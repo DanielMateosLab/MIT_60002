@@ -7,5 +7,6 @@
     "activityBar.background": "#1E1E7E",
     "titleBar.activeBackground": "#2A2AB0",
     "titleBar.activeForeground": "#FBFBFE"
-  }
+  },
+  "python.analysis.typeCheckingMode": "basic"
 }
