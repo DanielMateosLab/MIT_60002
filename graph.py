@@ -40,7 +40,7 @@ class WeightedEdge(Edge):
 
 
 class Digraph(object):
-    # A Digraph is a directed graph
+    # A Digraph is a directed graph. The above representation technique is an adjacency list.
     # nodes is a list of all the nodes in the digraph
     nodes: List[Node] = []
     # edges is a dictionary mapping each node to a list of its children
@@ -80,4 +80,11 @@ class Graph(Digraph):
         super().addEdge(rev)
 
 
-# TODO: Test Digraph and Graph
+def printPath(path: List[Node]):
+    result = ""
+    for node in path:
+        result += str(node)
+        isLastNode = node == path[-1]
+        if not isLastNode:
+            result += " -> "
+    return result
