@@ -40,14 +40,29 @@ def maxVal(toConsider: list[Item], avail: int) -> MaxValResult:
         result = maxVal(toConsider[1:], avail)
     else:
         # Explore left branch
-        firstItem = toConsider[0]
-        withVal, withKnapsack = maxVal(toConsider[1:], avail - firstItem.getWeight())
-        withVal += firstItem.getValue()
-        withKnapsack += (firstItem,)
+        nextItem = toConsider[0]
+        withVal, withKnapsack = maxVal(toConsider[1:], avail - nextItem.getWeight())
+        withVal += nextItem.getValue()
         # Explore right branch
         withoutVal, withoutKnapsack = maxVal(toConsider[1:], avail)
         if withVal > withoutVal:
-            result = (withVal, withKnapsack)
+            result = (withVal, withKnapsack + (nextItem,))
         else:
             result = (withoutVal, withoutKnapsack)
     return result
+
+
+def smallTest():
+    names = ["a", "b", "c", "d"]
+    vals = [6, 7, 8, 9]
+    weights = [3, 3, 2, 5]
+    items = []
+    for i in range(len(vals)):
+        items.append(Item(names[i], weights[i], vals[i]))
+    val, taken = maxVal(items, 5)
+    for item in taken:
+        print(item)
+    print("Total value of items taken =", val)
+
+
+smallTest()
